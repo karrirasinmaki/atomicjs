@@ -1,12 +1,4 @@
-(function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory;
-  } else {
-    root.atomic = factory(root);
-  }
-})(this, function (root) {
+(function () {
 
   'use strict';
 
@@ -27,7 +19,7 @@
       success: function () {},
       error: function () {}
     };
-    var XHR = root.XMLHttpRequest || ActiveXObject;
+    var XHR = window.XMLHttpRequest || ActiveXObject;
     var request = new XHR('MSXML2.XMLHTTP.3.0');
     request.open(type, url, true);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -71,6 +63,23 @@
     return xhr('DELETE', url);
   };
 
-  return exports;
+  // check for AMD/Module support, otherwise define Bullet as a global variable.
+  if (typeof define !== 'undefined' && define.amd)
+  {
+    // AMD. Register as an anonymous module.
+    define (function()
+    {
+      return exports;
+    });
 
-});
+  }
+  else if (typeof module !== 'undefined' && module.exports)
+  {
+    module.exports = exports;
+  }
+  else
+  {
+    window.atomic = exports;
+  }
+
+})();

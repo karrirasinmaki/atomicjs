@@ -1,17 +1,21 @@
-# Node
+# Dev Environment #
+######################
 node_modules
+npm-debug.log
+*.map
+*.sublime-*
 
-## OS X
+# OS generated files #
+######################
 .DS_Store
+.DS_Store?
 .AppleDouble
 .LSOverride
 Icon
 ._*
 .Spotlight-V100
 .Trashes
-
-## Windows
-Thumbs.db
 ehthumbs.db
+Thumbs.db
 Desktop.ini
 $RECYCLE.BIN/

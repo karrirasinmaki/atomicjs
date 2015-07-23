@@ -1,0 +1,10 @@
+.editorconfig
+.gitignore
+.jshintrc
+.npmignore
+.travis.yml
+Gruntfile.js
+node_modules
+src
+dist/atomic.min.js
+test

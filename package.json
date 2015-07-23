@@ -1,14 +1,35 @@
 {
-  "name": "atomic",
-  "title": "atomic",
-  "description": "",
+  "name": "atomicjs",
+  "title": "atomicjs",
+  "description": "A tiny AJAX module with great browser support",
+  "version": "1.0.0",
+  "homepage": "github.com/munkychop/atomicjs",
+  "author": {
+    "name": "Ivan Hayes",
+    "url": "http://www.ivanhayes.com"
+  },
+  "main": "dist/atomic.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/toddmotto/atomic.git"
+    "url": "http://github.com/munkychop/atomicjs.git"
   },
-  "main": "./src/atomic.js",
-  "homepage": "github.com/toddmotto/atomic",
-  "version": "1.0.0",
+  "keywords": [
+    "atomic",
+    "ajax",
+    "xhr",
+    "http",
+    "json",
+    "xml",
+    "post",
+    "request",
+    "reqwest"
+  ],
+  "private": false,
+  "licenses": [
+  {
+    "type": "MIT",
+    "url": "https://github.com/munkychop/atomicjs/blob/master/LICENSE"
+  }],
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",

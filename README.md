@@ -1,6 +1,30 @@
-# atomic.js [![Build Status](https://travis-ci.org/toddmotto/atomic.svg)](https://travis-ci.org/toddmotto/atomic)
+# atomicjs
 
 atomic is a 1KB standalone module for getting a supported XHR instance, making HTTP requests and handling success/error callbacks. atomic has a very clean and readable syntax using Object chaining, as well as automatic JSON parsing when JSON is returned. atomic works in IE6+, but uses native JSON parsing which works in IE8+, so -IE8 won't parse the response.
+
+## Installation
+
+### npm
+Install via npm with the following command in your command prompt:
+
+```sh
+npm i atomicjs -S
+```
+
+You can then require atomicjs if using CJS:
+
+```js
+var atomic = require('atomicjs');
+```
+
+### Standalone
+Alternatively, you can download the [minified](https://raw.githubusercontent.com/munkychop/atomicjs/master/dist/atomic.min.js), or [non-minified](https://raw.githubusercontent.com/munkychop/atomicjs/master/dist/atomic.js) source code and use a regular script tag:
+  
+```html
+<script src="path/to/atomic.min.js"></script>
+```
+
+##API
 
 #### atomic.get()
 Use `atomic.get()` to make a `GET`. Success and error callbacks will return the `xhr.responseText` and full `xhr` as arguments one and two.
@@ -48,32 +72,6 @@ atomic.delete('/endpoint')
 .error(function (data, xhr) {
   
 });
-```
-
-## Installing with Bower
-Use the repository hook:
-
-```
-bower install https://github.com/toddmotto/atomic.git
-```
-
-## Manual installation
-Ensure you're using the files from the `dist` directory (contains compiled production-ready code). Ensure you place the script before the closing `</body>` tag.
-  
-```html
-<body>
-  <!-- html above -->
-  <script src="dist/atomic.js"></script>
-  <script>
-  atomic.get('/endpoint')
-  .success(function (data, xhr) {
-
-  })
-  .error(function (data, xhr) {
-
-  });
-  </script>
-</body>
 ```
 
 ## Contributing

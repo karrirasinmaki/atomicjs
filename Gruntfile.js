@@ -19,7 +19,7 @@ module.exports = function(grunt) {
       core: ['<%= project.src %>/<%= project.filename %>.js']
     },
 
-    banner: '/*! <%= pkg.title %> v<%= pkg.version %> | (c) <%= grunt.template.today(\'yyyy\') %> @toddmotto | <%= pkg.homepage %> */\n',
+    banner: '/*! <%= pkg.title %> v<%= pkg.version %> | (c) <%= grunt.template.today(\'yyyy\') %> @munkychop | <%= pkg.homepage %> */\n',
 
     jshint: {
       gruntfile: 'Gruntfile.js',
@@ -36,23 +36,32 @@ module.exports = function(grunt) {
       }
     },
 
-    concat: {
-      dist: {
-        src: ['<%= project.core %>'],
-        dest: '<%= project.dist %>/<%= project.filename %>.js',
-      },
-      options: {
-        stripBanners: true,
-        banner: '<%= banner %>'
-      }
-    },
-
     uglify: {
-      options: {
-        banner: '<%= banner %>'
+
+      dev: {
+        options: {
+          compress: {
+            'drop_console': true,
+            'keep_fnames': true,
+            'keep_fargs': true
+          },
+          mangle: false,
+          beautify: true,
+          banner: '<%= banner %>'
+        },
+
+        src: '<%= project.core %>',
+        dest: '<%= project.dist %>/<%= project.filename %>.js'
       },
       dist: {
-        src: '<%= project.dist %>/<%= project.filename %>.js',
+        options: {
+          compress: {
+            'drop_console': true
+          },
+          preserveComments: false
+        },
+
+        src: '<%= project.core %>',
         dest: '<%= project.dist %>/<%= project.filename %>.min.js'
       },
     },
@@ -65,8 +74,8 @@ module.exports = function(grunt) {
     copy: {
       test: {
         src: '<%= project.src %>/<%= project.filename %>.js',
-        dest: '<%= project.test %>/<%= project.filename %>.js',
-      },
+        dest: '<%= project.test %>/<%= project.filename %>.js'
+      }
     },
 
     connect: {
@@ -88,7 +97,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: '<%= jshint.files %>',
-        tasks: ['jshint', 'uglify'],
+        tasks: ['clean', 'jshint', 'uglify', 'jasmine'],
       }
     }
   });
@@ -96,7 +105,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'clean',
     'jshint',
-    'concat',
     'uglify',
     'jasmine'
   ]);

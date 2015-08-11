@@ -14,15 +14,17 @@
     return [result, req];
   };
 
-  var xhr = function (type, url, data) {
+  var xhr = function (httpMethod, url, data, contentType) {
+    var contentTypeHeader = contentType === 'json' ? 'application/json' : 'application/x-www-form-urlencoded';
+    console.log('contentTypeHeader:', contentTypeHeader);
     var methods = {
       success: function () {},
       error: function () {}
     };
     var XHR = window.XMLHttpRequest || ActiveXObject;
     var request = new XHR('MSXML2.XMLHTTP.3.0');
-    request.open(type, url, true);
-    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.open(httpMethod, url, true);
+    request.setRequestHeader('Content-type', contentTypeHeader);
     request.onreadystatechange = function () {
       if (request.readyState === 4) {
         if (request.status >= 200 && request.status < 300) {
@@ -51,12 +53,12 @@
     return xhr('GET', src);
   };
 
-  exports['put'] = function (url, data) {
-    return xhr('PUT', url, data);
+  exports['put'] = function (url, data, contentType) {
+    return xhr('PUT', url, data, contentType);
   };
 
-  exports['post'] = function (url, data) {
-    return xhr('POST', url, data);
+  exports['post'] = function (url, data, contentType) {
+    return xhr('POST', url, data, contentType);
   };
 
   exports['delete'] = function (url) {

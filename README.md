@@ -50,7 +50,7 @@ atomic.post('/endpoint'[, data, contentType])
 });
 ```
 
-The `contentType` parameter must be a ContentType header string, for example, `application/x-www-form-urlencoded` (the default), or 'application/json' etc.
+The `contentType` parameter must be a ContentType header string, for example, `application/x-www-form-urlencoded` (the default), or `application/json` etc.
 
 #### atomic.put()
 Use `atomic.put()` to make a `PUT`. Success and error callbacks will return the `xhr.responseText` and full `xhr` as arguments one and two.

@@ -1,6 +1,6 @@
 # atomicjs
 
-atomic is a 1KB standalone module for getting a supported XHR instance, making HTTP requests and handling success/error callbacks. atomic has a very clean and readable syntax using Object chaining, as well as automatic JSON parsing when JSON is returned. atomic works in IE6+, but uses native JSON parsing which works in IE8+, so -IE8 won't parse the response.
+atomic is a tiny standalone module for getting a supported XHR instance, making HTTP requests and handling success/error callbacks. atomic has a very clean and readable syntax using Object chaining, as well as automatic JSON parsing when JSON is returned. atomic works in IE6+, but uses native JSON parsing which works in IE8+, so if you want browsers older than IE8 to parse the response you'll need a [JSON polyfill](http://bestiejs.github.io/json3/).
 
 ## Installation
 
@@ -24,7 +24,7 @@ Alternatively, you can download the [minified](https://raw.githubusercontent.com
 <script src="path/to/atomic.min.js"></script>
 ```
 
-##API
+## API
 
 #### atomic.get()
 Use `atomic.get()` to make a `GET`. Success and error callbacks will return the `xhr.responseText` and full `xhr` as arguments one and two.
@@ -41,7 +41,7 @@ atomic.get('/endpoint')
 #### atomic.post()
 Use `atomic.post()` to make a `POST`. Success and error callbacks will return the `xhr.responseText` and full `xhr` as arguments one and two.
 ```js
-atomic.post('/endpoint'[, data])
+atomic.post('/endpoint'[, data, contentType])
 .success(function (data, xhr) {
   
 })
@@ -50,10 +50,12 @@ atomic.post('/endpoint'[, data])
 });
 ```
 
+The `contentType` parameter must be a ContentType header string, for example, `application/x-www-form-urlencoded` (the default), or 'application/json' etc.
+
 #### atomic.put()
 Use `atomic.put()` to make a `PUT`. Success and error callbacks will return the `xhr.responseText` and full `xhr` as arguments one and two.
 ```js
-atomic.put('/endpoint'[, data])
+atomic.put('/endpoint'[, data, contentType])
 .success(function (data, xhr) {
   
 })
@@ -61,6 +63,8 @@ atomic.put('/endpoint'[, data])
   
 });
 ```
+
+The `contentType` parameter must be a ContentType header string, for example, `application/x-www-form-urlencoded` (the default), or 'application/json' etc.
 
 #### atomic.delete()
 Use `atomic.delete()` to make a `DELETE`. Success and error callbacks will return the `xhr.responseText` and full `xhr` as arguments one and two.
@@ -76,8 +80,3 @@ atomic.delete('/endpoint')
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using Grunt.
-
-## Release history
-
-- 1.0.0
-  - Initial release

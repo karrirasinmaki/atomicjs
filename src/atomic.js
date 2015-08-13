@@ -15,8 +15,7 @@
   };
 
   var xhr = function (httpMethod, url, data, contentType) {
-    var contentTypeHeader = contentType === 'json' ? 'application/json' : 'application/x-www-form-urlencoded';
-    console.log('contentTypeHeader:', contentTypeHeader);
+    var contentTypeHeader = contentType || 'application/x-www-form-urlencoded';
     var methods = {
       success: function () {},
       error: function () {}

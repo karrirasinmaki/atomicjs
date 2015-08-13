@@ -1,4 +1,4 @@
-/*! atomicjs v1.0.0 | (c) 2015 @munkychop | github.com/munkychop/atomicjs */
+/*! atomicjs v1.1.0 | (c) 2015 @munkychop | github.com/munkychop/atomicjs */
 !function() {
     "use strict";
     var exports = {}, parse = function(req) {
@@ -10,13 +10,11 @@
         }
         return [ result, req ];
     }, xhr = function(httpMethod, url, data, contentType) {
-        var contentTypeHeader = "json" === contentType ? "application/json" : "application/x-www-form-urlencoded";
-        console.log('contentTypeHeader:', contentTypeHeader);
-        var methods = {
+        var contentTypeHeader = contentType || "application/x-www-form-urlencoded", methods = {
             success: function() {},
             error: function() {}
         }, XHR = window.XMLHttpRequest || ActiveXObject, request = new XHR("MSXML2.XMLHTTP.3.0");
-        request.open(httpMethod, url, !0), request.setRequestHeader("Content-type", contentTypeHeader),
+        request.open(httpMethod, url, !0), request.setRequestHeader("Content-type", contentTypeHeader), 
         request.onreadystatechange = function() {
             4 === request.readyState && (request.status >= 200 && request.status < 300 ? methods.success.apply(methods, parse(request)) : methods.error.apply(methods, parse(request)));
         }, request.send(data);

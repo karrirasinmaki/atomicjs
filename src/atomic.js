@@ -4,6 +4,10 @@
 
   var exports = {};
 
+  var options = {
+    contentType : 'application/x-www-form-urlencoded'
+  };
+
   var parse = function (req) {
     var result;
     try {
@@ -15,7 +19,7 @@
   };
 
   var xhr = function (httpMethod, url, data, contentType) {
-    var contentTypeHeader = contentType || 'application/x-www-form-urlencoded';
+    var contentTypeHeader = contentType || options.contentType;
     var methods = {
       success: function () {},
       error: function () {}
@@ -23,7 +27,7 @@
     var XHR = window.XMLHttpRequest || ActiveXObject;
     var request = new XHR('MSXML2.XMLHTTP.3.0');
     request.open(httpMethod, url, true);
-    request.setRequestHeader('Content-type', contentTypeHeader);
+    request.setRequestHeader('Content-Type', contentTypeHeader);
     request.onreadystatechange = function () {
       if (request.readyState === 4) {
         if (request.status >= 200 && request.status < 300) {
@@ -62,6 +66,10 @@
 
   exports['delete'] = function (url) {
     return xhr('DELETE', url);
+  };
+
+  exports['setContentType'] = function (contentType) {
+    options.contentType = contentType;
   };
 
   // check for AMD/Module support, otherwise define Bullet as a global variable.

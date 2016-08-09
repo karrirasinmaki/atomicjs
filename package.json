@@ -2,7 +2,7 @@
   "name": "atomicjs",
   "title": "atomicjs",
   "description": "A tiny AJAX module with great browser support",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "homepage": "github.com/munkychop/atomicjs",
   "author": {
     "name": "Ivan Hayes",

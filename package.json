@@ -13,6 +13,9 @@
     "type": "git",
     "url": "http://github.com/munkychop/atomicjs.git"
   },
+  "scripts": {
+    "test": "grunt"
+  },
   "keywords": [
     "atomic",
     "ajax",
@@ -26,19 +29,20 @@
   ],
   "private": false,
   "licenses": [
-  {
-    "type": "MIT",
-    "url": "https://github.com/munkychop/atomicjs/blob/master/LICENSE"
-  }],
+    {
+      "type": "MIT",
+      "url": "https://github.com/munkychop/atomicjs/blob/master/LICENSE"
+    }
+  ],
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt-contrib-uglify": "~0.2.4",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-connect": "~0.5.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-jasmine": "~0.5.2",
-    "matchdep": "~0.3.0"
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jasmine": "^1.0.3",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "matchdep": "^1.0.1"
   }
 }

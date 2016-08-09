@@ -1,7 +1,9 @@
-/*! atomicjs v1.1.0 | (c) 2015 @munkychop | github.com/munkychop/atomicjs */
+/*! atomicjs v2.0.0 | (c) 2016 @munkychop | github.com/munkychop/atomicjs */
 !function() {
     "use strict";
-    var exports = {}, parse = function(req) {
+    var exports = {}, options = {
+        contentType: "application/x-www-form-urlencoded"
+    }, parse = function(req) {
         var result;
         try {
             result = JSON.parse(req.responseText);
@@ -10,11 +12,11 @@
         }
         return [ result, req ];
     }, xhr = function(httpMethod, url, data, contentType) {
-        var contentTypeHeader = contentType || "application/x-www-form-urlencoded", methods = {
+        var contentTypeHeader = contentType || options.contentType, methods = {
             success: function() {},
             error: function() {}
         }, XHR = window.XMLHttpRequest || ActiveXObject, request = new XHR("MSXML2.XMLHTTP.3.0");
-        request.open(httpMethod, url, !0), request.setRequestHeader("Content-type", contentTypeHeader), 
+        request.open(httpMethod, url, !0), request.setRequestHeader("Content-Type", contentTypeHeader), 
         request.onreadystatechange = function() {
             4 === request.readyState && (request.status >= 200 && request.status < 300 ? methods.success.apply(methods, parse(request)) : methods.error.apply(methods, parse(request)));
         }, request.send(data);
@@ -36,6 +38,8 @@
         return xhr("POST", url, data, contentType);
     }, exports["delete"] = function(url) {
         return xhr("DELETE", url);
+    }, exports.setContentType = function(contentType) {
+        options.contentType = contentType;
     }, "undefined" != typeof define && define.amd ? define(function() {
         return exports;
     }) : "undefined" != typeof module && module.exports ? module.exports = exports : window.atomic = exports;

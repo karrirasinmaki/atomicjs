@@ -41,7 +41,7 @@ atomic.get('/endpoint')
 #### atomic.post()
 Use `atomic.post()` to make a `POST`. Success and error callbacks will return the `xhr.responseText` and full `xhr` as arguments one and two.
 ```js
-atomic.post('/endpoint'[, data, contentType])
+atomic.post('/endpoint'[, data])
 .success(function (data, xhr) {
   
 })
@@ -49,13 +49,11 @@ atomic.post('/endpoint'[, data, contentType])
   
 });
 ```
-
-The `contentType` parameter must be a ContentType header string, for example, `application/x-www-form-urlencoded` (the default), or `application/json` etc.
 
 #### atomic.put()
 Use `atomic.put()` to make a `PUT`. Success and error callbacks will return the `xhr.responseText` and full `xhr` as arguments one and two.
 ```js
-atomic.put('/endpoint'[, data, contentType])
+atomic.put('/endpoint'[, data])
 .success(function (data, xhr) {
   
 })
@@ -63,8 +61,6 @@ atomic.put('/endpoint'[, data, contentType])
   
 });
 ```
-
-The `contentType` parameter must be a ContentType header string, for example, `application/x-www-form-urlencoded` (the default), or 'application/json' etc.
 
 #### atomic.delete()
 Use `atomic.delete()` to make a `DELETE`. Success and error callbacks will return the `xhr.responseText` and full `xhr` as arguments one and two.
@@ -77,6 +73,19 @@ atomic.delete('/endpoint')
   
 });
 ```
+
+#### atomic.getHeaders()
+Use `atomic.getHeaders()` to get configured headers.
+
+Default headers:
+```json
+headers: {
+  "Content-Type": "application/x-www-form-urlencoded"
+}
+```
+
+#### atomic.setHeaders(headers)
+Use `atomic.setHeaders(headers)` to set new default headers.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using Grunt.

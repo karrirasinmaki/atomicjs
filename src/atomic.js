@@ -5,7 +5,9 @@
   var exports = {};
 
   var options = {
-    contentType : 'application/x-www-form-urlencoded'
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
   };
 
   var parse = function (req) {
@@ -18,8 +20,7 @@
     return [result, req];
   };
 
-  var xhr = function (httpMethod, url, data, contentType) {
-    var contentTypeHeader = contentType || options.contentType;
+  var xhr = function (httpMethod, url, data) {
     var methods = {
       success: function () {},
       error: function () {}
@@ -27,7 +28,9 @@
     var XHR = window.XMLHttpRequest || ActiveXObject;
     var request = new XHR('MSXML2.XMLHTTP.3.0');
     request.open(httpMethod, url, true);
-    request.setRequestHeader('Content-Type', contentTypeHeader);
+    for (var k in options.headers) {
+      request.setRequestHeader(k, options.headers[k]);
+    }
     request.onreadystatechange = function () {
       if (request.readyState === 4) {
         if (request.status >= 200 && request.status < 300) {
@@ -56,20 +59,24 @@
     return xhr('GET', src);
   };
 
-  exports['put'] = function (url, data, contentType) {
-    return xhr('PUT', url, data, contentType);
+  exports['put'] = function (url, data) {
+    return xhr('PUT', url, data);
   };
 
-  exports['post'] = function (url, data, contentType) {
-    return xhr('POST', url, data, contentType);
+  exports['post'] = function (url, data) {
+    return xhr('POST', url, data);
   };
 
   exports['delete'] = function (url) {
     return xhr('DELETE', url);
   };
 
-  exports['setContentType'] = function (contentType) {
-    options.contentType = contentType;
+  exports['setHeaders'] = function (headers) {
+    options.headers = headers;
+  };
+
+  exports['getHeaders'] = function () {
+    return options.headers;
   };
 
   // check for AMD/Module support, otherwise define Bullet as a global variable.

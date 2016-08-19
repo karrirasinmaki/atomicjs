@@ -60,7 +60,9 @@ describe('atomic', function () {
       });
 
       it('should update the default Content-Type header', function() {
-        atomic.setContentType('application/json');
+        atomic.setHeaders({
+          'Content-Type': 'application/json'
+        });
         atomic.get('');
 
         expect(XMLHttpRequest.prototype.setRequestHeader)
